@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project creator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Project creator by Johan</h1>
+    <select id="framework-selector">
+        <option value="flask">Flask</option>
+        <option value="pyqt">PyQT</option>
+        <option value="tkinter">Tkinter</option>
+        <option value="commandline">Command Line</option>
+    </select>
+
+    <input type="text" id="path-display" readonly>
+    <input type="text" id="project-name" placeholder="Ange projektets namn">
+    <button id="open-explorer">Öppna File Explorer</button>
+    <button id="create-project">Skapa projekt</button>
+    <div id="server-response"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
