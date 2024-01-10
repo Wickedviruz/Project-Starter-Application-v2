@@ -18,10 +18,34 @@ function getSavedDirectory() {
 let selectedFramework = '';
 document.getElementById('framework-selector').addEventListener('change', (event) => {
     const selectedFramework = event.target.value;
-    console.log("Valt alternativ:", selectedFramework);
+    // Visa/Dölj "additional-options" baserat på valt framework
+    const optionsDiv = document.getElementById('framework-options');
+    
+    // Rensa befintliga options
+    optionsDiv.innerHTML = '';
 
-    // Här kan du göra ytterligare handlingar beroende på det valda alternativet
-    // Till exempel skicka detta val till din Flask-backend eller hantera det på annat sätt
+    // Definiera de olika valen för varje ramverk
+    const frameworkOptions = {
+        flask: ["SQLAlchemy", "SQLite","Flask-Login", "Flask-WTF", "Flask-Migrate", "Flask-Bootstrap", "Flask-Admin", "Flask-RESTful", "Flask-Mail", "Flask-Uploads", "Flask-Testin"],
+        pyqt: ["PyQt5", "Pipenv","PyQt5-tools", "PyQt5-stubs", "PyQt5-sip"],
+        tkinter: ["Turtle", "Pillow", "PyInstaller", "PyAutoGUI", "PyMsgBox", "PyScreeze", "PyTweening", "PyGetWindow", "PyRect", "PyDirectInput", "PyWin32"],
+        commandline: ["Argparse", "Logging"]
+    };
+
+    // Skapa checkboxes baserat på valt ramverk
+    if (frameworkOptions[selectedFramework]) {
+        frameworkOptions[selectedFramework].forEach(option => {
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = option.toLowerCase();
+            checkbox.name = 'options';
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(option));
+            optionsDiv.appendChild(label);
+            optionsDiv.appendChild(document.createElement('br'));
+        });
+    }
 });
 
 document.getElementById('create-project').addEventListener('click', () => {
@@ -29,6 +53,7 @@ document.getElementById('create-project').addEventListener('click', () => {
     const projectName = document.getElementById('project-name').value;
     const selectedFramework = document.getElementById('framework-selector').value;
     const selectedDirectory = localStorage.getItem('selectedDirectory');
+    const checkedOptions = Array.from(document.querySelectorAll('#framework-options input:checked')).map(el => el.value);
 
     // Kontrollera att all information är ifylld
     if (!projectName || !selectedDirectory || !selectedFramework) {
@@ -40,7 +65,8 @@ document.getElementById('create-project').addEventListener('click', () => {
     const projectData = {
         project_type: selectedFramework,
         project_name: projectName,
-        project_path: selectedDirectory
+        project_path: selectedDirectory,
+        projectData_options: checkedOptions
     };
 
     // Skicka POST-begäran till Flask-servern

@@ -6,18 +6,25 @@
 </head>
 <body>
     <h1>Project creator by Johan</h1>
-    <select id="framework-selector">
-        <option value="flask">Flask</option>
-        <option value="pyqt">PyQT</option>
-        <option value="tkinter">Tkinter</option>
-        <option value="commandline">Command Line</option>
-    </select>
+    <div id="content-container">
+        <div id="main-content">
+            <select id="framework-selector">
+                <option value="" disabled selected>Select framework</option>
+                <option value="flask">Flask</option>
+                <option value="pyqt">PyQT</option>
+                <option value="tkinter">Tkinter</option>
+                <option value="commandline">Command Line</option>
+            </select>
 
-    <input type="text" id="path-display" readonly>
-    <input type="text" id="project-name" placeholder="Project name:">
-    <button id="open-explorer">Open file explorer</button>
-    <button id="create-project">Create project</button>
-    <div id="server-response"></div>
+            <input type="text" id="path-display" readonly>
+            <input type="text" id="project-name" placeholder="Project name:">
+            <button id="open-explorer">Open file explorer</button>
+            <button id="create-project">Create project</button>
+            <div id="server-response"></div>
+        </div>
+        <div id="framework-options">
+    </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
