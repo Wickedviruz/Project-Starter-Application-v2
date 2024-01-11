@@ -26,8 +26,8 @@ document.getElementById('framework-selector').addEventListener('change', (event)
 
     // Definiera de olika valen för varje ramverk
     const frameworkOptions = {
-        flask: ["SQLAlchemy", "SQLite","Flask-Login", "Flask-WTF", "Flask-Migrate", "Flask-Bootstrap", "Flask-Admin", "Flask-RESTful", "Flask-Mail", "Flask-Uploads", "Flask-Testin"],
-        pyqt: ["PyQt5", "Pipenv","PyQt5-tools", "PyQt5-stubs", "PyQt5-sip"],
+        flask: ["SQLAlchemy", "SQLite"],
+        pyqt: ["Pipenv","PyQt5-tools", "PyQt5-stubs", "PyQt5-sip"],
         tkinter: ["Turtle", "Pillow", "PyInstaller", "PyAutoGUI", "PyMsgBox", "PyScreeze", "PyTweening", "PyGetWindow", "PyRect", "PyDirectInput", "PyWin32"],
         commandline: ["Argparse", "Logging"]
     };
@@ -66,7 +66,7 @@ document.getElementById('create-project').addEventListener('click', () => {
         project_type: selectedFramework,
         project_name: projectName,
         project_path: selectedDirectory,
-        projectData_options: checkedOptions
+        project_options: checkedOptions
     };
 
     // Skicka POST-begäran till Flask-servern

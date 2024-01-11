@@ -2,7 +2,7 @@ import os
 import re
 
 # Skapa en funktion som skapar ett flask-projekt
-def create_flask_project(base_path, project_name):
+def create_flask_project(base_path, project_name, project_options):
     # Ta bort ogiltiga tecken från projektets namn och ersätt med "_"
     project_name = re.sub(r'[\/:*?"<>|]', '_', project_name)
     project_path = os.path.join(base_path, project_name)
@@ -13,7 +13,8 @@ def create_flask_project(base_path, project_name):
     
     # Skapa projektstruktur
     os.makedirs(project_path, exist_ok=True)
-    
+
+  
     # Skapa undermappar
     os.makedirs(os.path.join(project_path, 'app', 'templates'), exist_ok=True)
     os.makedirs(os.path.join(project_path, 'tests'), exist_ok=True)
@@ -49,9 +50,7 @@ if __name__ == '__main__':\n\
 #requirements file structure
 requirements = {
 'name': 'requirements.txt',
-'content': "Flask\n\
-Flask-SQLAlchemy\n\
-Flask-Migrate"
+'content': "Flask\n"
 }
 
 #config file structure

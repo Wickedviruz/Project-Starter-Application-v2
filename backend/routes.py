@@ -5,16 +5,13 @@ from project_generators.pyQT_project import create_pyQT_project
 from project_generators.flask_project import create_flask_project
 from project_generators.commandline_project import create_command_line_project
 
-print("routes.py laddades")
-
 def routes(app):
-    print("Funktionen routes anropades")
     @app.route('/create_project', methods=['POST'])
     def create_project():
-        print("Funktionen create_project anropades")
         data = request.json
         project_type = data['project_type']
         project_name = data['project_name']
+        project_options = data['project_options']
         
         # Hantera 'file:///'-prefix och konvertera till absolut sökväg
         project_path = data['project_path']
@@ -24,18 +21,17 @@ def routes(app):
 
         # Bygg fullständig sökväg till projektet
         full_project_path = os.path.join(project_path, project_name)
-        print(f"Data mottagen: {data}, fullständig sökväg: {full_project_path}")
 
         # Logik för att skapa projekt baserat på mottagen data
         success = False
         if project_type == 'tkinter':
-            success = create_tkinter_project(full_project_path, project_name)
+            success = create_tkinter_project(full_project_path, project_name, project_options)
         elif project_type == 'pyqt':
-            success = create_pyQT_project(full_project_path, project_name)
+            success = create_pyQT_project(full_project_path, project_name, project_options)
         elif project_type == 'flask':
-            success = create_flask_project(full_project_path, project_name)
+            success = create_flask_project(full_project_path, project_name, project_options)
         elif project_type == 'commandline':
-            success = create_command_line_project(full_project_path, project_name)
+            success = create_command_line_project(full_project_path, project_name, project_options)
         else:
             return jsonify({'status': 'error', 'message': 'Okänd projekttyp'}), 400
 
