@@ -33,13 +33,15 @@ def create_command_line_project(base_path, project_name, project_options):
         import_content += "import logging\n"
         main_content += "logging.basicConfig(level=logging.INFO)\n\n"
 
-    # Avsluta 'run.py' med huvudkoden
-    main_content += "if __name__ == '__main__':\n"
+    
     if 'argparse' in project_options:
         main_content += "    args = parse_arguments()\n"
     main_content += "    print('Hello from Command Line!')\n"
     if 'logging' in project_options:
         main_content += "    logging.info('Program started')\n"
+
+    # Avsluta 'run.py' med huvudkoden
+    main_content += "if __name__ == '__main__':\n"
 
     # sammanfoga import och huvudkod
     run_py_content = import_content + main_content
