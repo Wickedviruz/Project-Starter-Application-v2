@@ -26,7 +26,7 @@ document.getElementById('framework-selector').addEventListener('change', (event)
 
     // Definiera de olika valen för varje ramverk
     const frameworkOptions = {
-        flask: ["SQLAlchemy", "SQLite"],
+        flask: ["SQLAlchemy", "Flask-RESTful"],
         pyqt: ["Pipenv","PyQt5-tools", "PyQt5-stubs", "PyQt5-sip"],
         tkinter: ["Turtle", "Pillow", "PyInstaller", "PyAutoGUI", "PyMsgBox", "PyScreeze", "PyTweening", "PyGetWindow", "PyRect", "PyDirectInput", "PyWin32"],
         commandline: ["Argparse", "Logging"]

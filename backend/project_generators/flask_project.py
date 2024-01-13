@@ -21,16 +21,13 @@ def create_flask_project(base_path, project_name, project_options):
     if 'sqlalchemy' in project_options:
         import_content += "from flask_sqlalchemy import SQLAlchemy\n"
         main_content += "db = SQLAlchemy(app)\n\n"
+        requirements['content'] += "SQLAlchemy\n"
 
     # Lägg till Flask-RESTful om valt
     if 'flask_restful' in project_options:
         import_content += "from flask_restful import Resource, Api\n"
         main_content += "api = Api(app)\n\n"
-    
-    # Lägg till Flask-Login om valt
-    if 'flask_login' in project_options:
-        import_content += "from flask_login import LoginManager\n"
-        main_content += "login = LoginManager(app)\n\n"
+        requirements['content'] += "Flask-RESTful\n"
   
     # Skapa undermappar
     os.makedirs(os.path.join(project_path, 'app', 'templates'), exist_ok=True)
